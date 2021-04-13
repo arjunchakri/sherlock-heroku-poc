@@ -30,6 +30,12 @@
 
 	</properties>
 
+	<scm>
+		<connection>scm:git:git@github.com:arjunchakri/sherlock-heroku-poc.git</connection>
+		<developerConnection>scm:git:git@github.com:arjunchakri/sherlock-heroku-poc.git</developerConnection>
+		<url>https://github.com/arjunchakri/sherlock-heroku-poc/tree/master</url>
+	</scm>
+
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
