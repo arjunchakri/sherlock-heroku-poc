@@ -1,6 +1,6 @@
 # sherlock-heroku-poc
 
-![Github action](https://github.com/arjunchakri/sherlock-heroku-poc/actions/workflows/maven-publish.yml/badge.svg) ![Heroku](https://heroku-badge.herokuapp.com/?app=sherlock-test)
+[![Spring build](https://github.com/arjunchakri/sherlock-heroku-poc/actions/workflows/maven-publish.yml/badge.svg)](https://github.com/arjunchakri/sherlock-heroku-poc/actions/workflows/maven-publish.yml) ![Heroku](https://heroku-badge.herokuapp.com/?app=sherlock-test)
 
 
 
