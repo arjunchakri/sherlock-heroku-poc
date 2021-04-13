@@ -22,6 +22,15 @@ jobs:
         distribution: 'adopt'
         server-id: github 
         settings-path: ${{ github.workspace }} 
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          
+    - name: Setup git config commits
+      run:
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+      env:
+        GITHUB_TOKEN: ${{ github.token }}
 
     - name: Build with Maven, Deploy to Github packages
       run: mvn release:clean release:prepare release:perform 
