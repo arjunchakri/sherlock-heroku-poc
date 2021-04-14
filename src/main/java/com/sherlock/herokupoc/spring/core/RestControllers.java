@@ -10,11 +10,15 @@ import java.util.Calendar;
 import org.apache.commons.io.FileUtils;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.google.gson.Gson;
+
+import oshi.SystemInfo;
+import oshi.hardware.CentralProcessor;
+import oshi.hardware.HardwareAbstractionLayer;
+import oshi.software.os.OperatingSystem;
 
 @RestController
 public class RestControllers {
@@ -53,6 +57,13 @@ public class RestControllers {
 	}
 
 	@CrossOrigin(origins = ORIGINS)
+	@GetMapping(value = "/sys")
+	public String sys() throws Exception {
+		Gson gson = new Gson();
+		return gson.toJson(getSysInfo());
+	}
+
+	@CrossOrigin(origins = ORIGINS)
 	@GetMapping(value = "/statusCheck")
 	public String getStatusCheck() throws Exception {
 		return "OK";
@@ -73,6 +84,74 @@ public class RestControllers {
 	/*
 	 * UTILS
 	 */
+
+	private static String getSysInfo() {
+		StringBuilder builder = new StringBuilder();
+
+		SystemInfo si = new SystemInfo();
+
+		builder.append("MEMORY: [");
+		try {
+			HardwareAbstractionLayer hal = si.getHardware();
+
+			builder.append("AvailableMem " + hal.getMemory()
+					.getAvailable() + " ,");
+			builder.append("TotalMem " + hal.getMemory()
+					.getTotal() + " ,");
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+			builder.append("ERR-Memory");
+		}
+		catch (Error e) {
+			e.printStackTrace();
+			builder.append("ERR-Memory");
+		}
+		builder.append("], ");
+
+		builder.append("OS: [");
+		try {
+			OperatingSystem operatingSystem = si.getOperatingSystem();
+
+			builder.append("getFamily " + operatingSystem.getFamily() + " ,");
+			builder.append("getManufacturer " + operatingSystem.getManufacturer() + " ,");
+			builder.append("getProcessCount " + operatingSystem.getProcessCount() + " ,");
+			builder.append("getThreadCount " + operatingSystem.getThreadCount() + " ,");
+
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+			builder.append("ERR-os");
+		}
+		catch (Error e) {
+			e.printStackTrace();
+			builder.append("ERR-os");
+		}
+		builder.append("], ");
+
+		builder.append("PROCESSOR: [");
+		try {
+			CentralProcessor processor = si.getHardware()
+					.getProcessor();
+
+			builder.append("getFamily " + processor.getFamily() + " ,");
+			builder.append("getModel " + processor.getModel() + " ,");
+			builder.append("getProcessorID " + processor.getProcessorID() + " ,");
+
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+			builder.append("PROCESSOR-err");
+		}
+		catch (Error e) {
+			e.printStackTrace();
+			builder.append("PROCESSOR-err");
+		}
+		builder.append("], ");
+
+		return builder.toString();
+	}
+
 	private static File getAlertFile(String hostname) {
 		return new File("test-temp/", hostname + "alerts.log");
 	}
