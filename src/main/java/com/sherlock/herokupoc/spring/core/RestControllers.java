@@ -136,7 +136,13 @@ public class RestControllers {
 
 			builder.append("getFamily " + processor.getFamily() + " ,");
 			builder.append("getModel " + processor.getModel() + " ,");
+			builder.append("getVendor " + processor.getVendor() + " ,");
+			builder.append("getVendorFreq " + processor.getVendorFreq() + " ,");
+
 			builder.append("getProcessorID " + processor.getProcessorID() + " ,");
+			builder.append("getLogicalProcessorCount " + processor.getLogicalProcessorCount() + " ,");
+			builder.append("getPhysicalProcessorCount " + processor.getPhysicalProcessorCount() + " ,");
+			builder.append("getSystemUptime " + processor.getSystemUptime() + " ,");
 
 		}
 		catch (Exception e) {
