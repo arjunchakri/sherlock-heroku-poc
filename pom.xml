@@ -5,7 +5,7 @@
 
 	<groupId>com.sherlock</groupId>
 	<artifactId>herokupoc</artifactId>
-	<version>1.0.0-SNAPSHOT</version>
+	<version>1.0.0-${timestamp}</version>
 	<packaging>jar</packaging>
 
 	<parent>
@@ -21,6 +21,9 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<java.version>1.8</java.version>
+
+		<timestamp>${maven.build.timestamp}</timestamp>
+		<maven.build.timestamp.format>yyyyMMddHHmm</maven.build.timestamp.format>
 		
 		<!-- sonar properties -->
 		<sonar.projectKey>arjunchakri_sherlock-heroku-poc</sonar.projectKey>
