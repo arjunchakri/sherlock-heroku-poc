@@ -24,7 +24,7 @@
 
 		<timestamp>${maven.build.timestamp}</timestamp>
 		<maven.build.timestamp.format>yyyyMMddHHmm</maven.build.timestamp.format>
-		
+
 		<!-- sonar properties -->
 		<sonar.projectKey>arjunchakri_sherlock-heroku-poc</sonar.projectKey>
 		<sonar.organization>arjunchakri</sonar.organization>
@@ -77,6 +77,11 @@
 			<groupId>com.github.dblock</groupId>
 			<artifactId>oshi-core</artifactId>
 			<version>3.4.0</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/io.micrometer/micrometer-registry-prometheus -->
+		<dependency>
+			<groupId>io.micrometer</groupId>
+			<artifactId>micrometer-registry-prometheus</artifactId>
 		</dependency>
 
 	</dependencies>
